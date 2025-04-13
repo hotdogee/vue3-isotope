@@ -1,7 +1,7 @@
 {
   "name": "vueisotope",
-  "version": "3.1.2",
-  "description": "vue isotope for directive",
+  "version": "4.0.0",
+  "description": "vue3 isotope for directive",
   "main": "dist/vue_isotope.min.js",
   "files": [
     "dist/vue_isotope.min.js",
@@ -9,6 +9,7 @@
   ],
   "keywords": [
     "vue",
+    "vue3",
     "vuejs",
     "isotope",
     "web-components",
