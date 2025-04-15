@@ -5,10 +5,13 @@ var gulp = require('gulp');
 var fs = require('fs');
 var path = require('path');
 
-// load plugins
-var $ = require('gulp-load-plugins')();
-const babel = require('gulp-babel');
+// load plugins explicitly
+var jshint = require('gulp-jshint');
+var babel = require('gulp-babel');
 var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
+var clean = require('gulp-clean');
+var livereload = require('gulp-livereload');
 var mainBowerFiles = require('gulp-main-bower-files');
 var jip = require('jasmine-istanbul-phantom');
 
@@ -51,13 +54,12 @@ function scripts() {
     .src('src/**/*.js')
     .pipe(
       babel({
-        presets: ['es2015'],
+        presets: ['@babel/preset-env'],
         plugins: ['array-includes', 'transform-object-rest-spread'],
       })
     )
-    .pipe($.jshint())
-    .pipe($.jshint.reporter(require('jshint-stylish')))
-    .pipe($.size());
+    .pipe(jshint())
+    .pipe(jshint.reporter(require('jshint-stylish')));
 }
 
 function compileToEs5() {
@@ -65,43 +67,39 @@ function compileToEs5() {
     .src('src/**/*.js')
     .pipe(
       babel({
-        presets: ['es2015'],
+        presets: ['@babel/preset-env'],
         plugins: ['array-includes', 'transform-object-rest-spread'],
       })
     )
-    .pipe(gulp.dest('dist'))
-    .pipe($.size());
+    .pipe(gulp.dest('dist'));
 }
 
 function js() {
-  var jsFilter = $.filter('**/*.js', { restore: true });
-
   return gulp
     .src('src/**/*.js')
     .pipe(
       babel({
-        presets: ['es2015'],
+        presets: ['@babel/preset-env'],
         plugins: ['array-includes', 'transform-object-rest-spread'],
       })
     )
-    .pipe($.uglify())
+    .pipe(uglify())
     .pipe(
       rename({
         suffix: '.min',
       })
     )
-    .pipe(gulp.dest('dist'))
-    .pipe($.size());
+    .pipe(gulp.dest('dist'));
 }
 
-function clean() {
-  return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
+function cleanTask() {
+  return gulp.src(['.tmp', 'dist'], { read: false, allowEmpty: true }).pipe(clean());
 }
 
 function buildFinal() {
   if (!bowerComponentsExist()) {
     console.log('Bower components directory does not exist. Skipping buildFinal task.');
-    return gulp.src('.').pipe($.size()); // Return empty stream to allow gulp to continue
+    return gulp.src('.', { allowEmpty: true });
   }
 
   return gulp
@@ -135,7 +133,7 @@ function serve(done) {
 function bowerFiles() {
   if (!bowerComponentsExist()) {
     console.log('Bower components directory does not exist. Skipping bowerFiles task.');
-    return gulp.src('.').pipe($.size()); // Return empty stream to allow gulp to continue
+    return gulp.src('.', { allowEmpty: true });
   }
 
   return gulp
@@ -161,7 +159,7 @@ function copyJs() {
     .src('src/**/*.js')
     .pipe(
       babel({
-        presets: ['es2015'],
+        presets: ['@babel/preset-env'],
         plugins: ['array-includes', 'transform-object-rest-spread'],
       })
     )
@@ -181,7 +179,7 @@ function test(done) {
 }
 
 function watch() {
-  var server = $.livereload;
+  var server = livereload;
 
   server.listen();
   // watch for changes
@@ -200,17 +198,12 @@ function watch() {
     copyJs();
     test();
   });
-
-  // gulp.watch('test/spec/*.js').on('change', function(event){
-  //     changedSpec = event.path
-  //     gulp.start('test')
-  // });
 }
 
 // Define complex tasks
 const jsBuild = gulp.series(gulp.parallel(scripts, compileToEs5), js);
 const build = gulp.series(setupBower, jsBuild, copyJs, bowerFiles, buildFinal);
-const defaultTask = gulp.series(clean, build);
+const defaultTask = gulp.series(cleanTask, build);
 const serveTask = gulp.series(connect, serve);
 const watchTask = gulp.series(serveTask, watch);
 
@@ -218,7 +211,7 @@ const watchTask = gulp.series(serveTask, watch);
 exports.scripts = scripts;
 exports.compileToEs5 = compileToEs5;
 exports.js = jsBuild;
-exports.clean = clean;
+exports.clean = cleanTask;
 exports.build = build;
 exports.bowerFiles = bowerFiles;
 exports.copyJs = copyJs;
