@@ -14,7 +14,7 @@ A fully-featured Vue 3 component for [Isotope](https://isotope.metafizzy.co/), s
 - [Demo](https://vue3-isotope.hanl.in/)
 - [Playground](https://stackblitz.com/~/github.com/hotdogee/vue3-isotope?file=src/App.vue)
 
-## Features
+## ✨ Features
 
 - **Vue 3 Composition API:** Built with `<script setup>` for modern Vue development.
 - **TypeScript:** Fully typed for a better development experience.
@@ -24,7 +24,15 @@ A fully-featured Vue 3 component for [Isotope](https://isotope.metafizzy.co/), s
 - **Full Isotope Options:** Supports all standard Isotope layout options.
 - Emits events for all major Isotope operations.
 
-## Installation
+## 🧬 Lineage
+
+All credits go to these open-source works and resources 🙏
+
+- Rewritten for Vue 3 in TypeScript
+- Forked from [Vue.Isotope](https://github.com/David-Desmaisons/Vue.Isotope) (Vue 2)
+- Uses [isotope](https://github.com/metafizzy/isotope) (jQuery)
+
+## 📦 Installation
 
 ```bash
 npm install vue3-isotope
@@ -59,7 +67,7 @@ app.use(VueIsotope)
 app.mount('#app')
 ```
 
-## Basic Usage
+## 💡 Basic Usage
 
 ```vue
 <script setup lang="ts">
@@ -134,7 +142,7 @@ function sortByWeight() {
 </style>
 ```
 
-## Props
+## ⚙️ Props
 
 | Prop           | Type     | Default                                              | Description                                                                                                    |
 | -------------- | -------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
@@ -175,7 +183,7 @@ getFilterData: {
 }
 ```
 
-## Methods
+## 🛠️ Methods
 
 Access these methods via a ref to the component:
 
@@ -190,7 +198,7 @@ Access these methods via a ref to the component:
 | `getFilteredItemElements` | none                         | Returns array of filtered DOM elements                |
 | `getElementItems`         | none                         | Returns array of all item elements                    |
 
-## Events
+## 🔔 Events
 
 | Event     | Payload                      | Description                                 |
 | --------- | ---------------------------- | ------------------------------------------- |
@@ -200,7 +208,7 @@ Access these methods via a ref to the component:
 | `shuffle` | none                         | Emitted when items are shuffled             |
 | `arrange` | `Object`                     | Emitted when arrange is called with options |
 
-## CSS Selector Filtering
+## 🏷️ CSS Selector Filtering
 
 In addition to custom filter functions, you can also use CSS selector filtering:
 
@@ -218,28 +226,11 @@ isotopeRef.value.filter(':not(.transition)')
 isotopeRef.value.filter('.metal:not(.transition)')
 ```
 
-## TypeScript Support
-
-This component includes full TypeScript definitions. Use them to get type checking for options, methods, and events:
-
-```typescript
-import VueIsotope from 'vue3-isotope'
-import type { VueIsotopeOptions } from 'vue3-isotope'
-
-// Type-safe options
-const options: VueIsotopeOptions = {
-  layoutMode: 'masonry',
-  getSortData: {
-    name: (item: MyItemType) => item.name.toLowerCase()
-  }
-}
-```
-
-## Working with Images
+## 🖼️ Working with Images
 
 When working with images, they may load after Isotope has calculated layouts. To handle this case, consider using an image loading library like `imagesloaded`.
 
-## Development
+## 👨‍💻 Development
 
 ```bash
 npm i
@@ -258,7 +249,7 @@ npm run docs:dev
 # open localhost:5173
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -268,6 +259,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4.  **Push** your branch to your fork (`git push origin feature/amazing-feature`)
 5.  Create a **Pull Request**
 
-## License
+## 📜 License
 
 [MIT](https://github.com/hotdogee/vue3-isotope/blob/master/LICENSE)
