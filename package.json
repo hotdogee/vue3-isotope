@@ -1,68 +1,74 @@
 {
-  "name": "vueisotope",
+  "name": "vue3-isotope",
+  "description": "Isotope filter & sort magical layouts for Vue 3",
   "version": "4.0.0",
-  "description": "vue3 isotope for directive",
-  "main": "dist/vue_isotope.min.js",
+  "homepage": "https://vue3-isotope.hanl.in/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hotdogee/vue3-isotope.git"
+  },
+  "author": "Han Lin <hotdogee@gmail.com> (https://github.com/hotdogee)",
+  "license": "MIT",
+  "type": "module",
   "files": [
-    "dist/vue_isotope.min.js",
-    "src/vue_isotope.js"
+    "dist"
   ],
+  "main": "./dist/vue3-isotope.umd.cjs",
+  "module": "./dist/vue3-isotope.js",
+  "types": "./dist/vue3-isotope.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-isotope.js",
+      "require": "./dist/vue3-isotope.umd.cjs"
+    }
+  },
   "keywords": [
     "vue",
     "vue3",
-    "vuejs",
     "isotope",
-    "web-components",
-    "web-component",
-    "layout"
+    "isotope-layout",
+    "masonry",
+    "masonry-layout",
+    "layout",
+    "component"
   ],
-  "directories": {
-    "example": "examples",
-    "test": "test"
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src/"
   },
-  "dependencies": {
-    "isotope-layout": "^3.0.1",
-    "lodash": "^4.13.1"
+  "peerDependencies": {
+    "@types/isotope-layout": "^3.0.15",
+    "isotope-layout": "^3.0.6",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "babel-plugin-array-includes": "^2.0.3",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "bower": "^1.7.9",
-    "connect": "^3.4.1",
-    "connect-livereload": "^0.6.1",
-    "gulp": "^5.0.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-filter": "^9.0.1",
-    "gulp-flatten": "^0.4.0",
-    "gulp-jasmine": "^4.0.0",
-    "gulp-jshint": "^2.0.1",
-    "gulp-livereload": "^4.0.2",
-    "gulp-load-plugins": "^2.0.8",
-    "gulp-main-bower-files": "^1.5.2",
-    "gulp-rename": "^2.0.0",
-    "gulp-size": "^5.0.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-useref": "^5.0.0",
-    "jasmine-istanbul-phantom": "^1.1.1",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0",
-    "opn": "^5.5.0",
-    "serve-index": "^1.8.0",
-    "serve-static": "^2.2.0"
-  },
-  "scripts": {
-    "test": "gulp test",
-    "build": "gulp build"
-  },
-  "author": "David Desmaisons",
-  "bugs": {},
-  "license": "MIT",
-  "homepage": " https://github.com/David-Desmaisons/Vue.Isotope#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/David-Desmaisons/Vue.Isotope.git"
+    "@tsconfig/node22": "^22.0.1",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vitest/eslint-plugin": "^1.1.39",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.5.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-vue": "~10.0.0",
+    "jiti": "^2.4.2",
+    "jsdom": "^26.0.0",
+    "npm-run-all2": "^7.0.2",
+    "prettier": "3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "typescript": "~5.8.0",
+    "vite": "^6.2.4",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vitest": "^3.1.1",
+    "vue-tsc": "^2.2.8"
   }
 }
