@@ -189,7 +189,7 @@ onShuffle?: (() => any) | undefined;
 onSort?: ((sortBy: string | string[] | null) => any) | undefined;
 }>, {
 itemSelector: string;
-options: ExtendedIsotopeOptions;
+options: VueIsotopeOptions;
 }, {}, {}, {}, string, ComponentProvideOptions, false, {
 isotopeElement: HTMLDivElement;
 }, HTMLDivElement>;
@@ -219,12 +219,6 @@ declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_Te
 
 declare type Elements = Element | Element[] | HTMLElement | HTMLElement[] | string | NodeList;
 
-declare interface ExtendedIsotopeOptions extends Omit<IsotopeOptions, 'getSortData'> {
-    getSortData?: SortDefinition | undefined;
-    getFilterData?: FilterDefinition | undefined;
-    isJQueryFiltering?: boolean | undefined;
-}
-
 declare function filter(filterName: string | ((item: ItemDataType, index?: number) => boolean) | null): void;
 
 declare interface FilterDefinition {
@@ -236,7 +230,7 @@ declare function getElementItems(): Element[];
 declare function getFilteredItemElements(): Element[];
 
 declare interface IsotopeInstance extends Omit<default_2, 'updateSortData'> {
-    options?: ExtendedIsotopeOptions;
+    options?: VueIsotopeOptions;
     items?: Array<{
         element: Element;
     }>;
@@ -253,12 +247,12 @@ declare type LayoutMode = NonNullable<IsotopeOptions['layoutMode']>;
 declare interface Props {
     list: ItemDataType[];
     itemSelector: string;
-    options: ExtendedIsotopeOptions;
+    options: VueIsotopeOptions;
 }
 
 declare function shuffle(): void;
 
-declare function sort(sortBy: string | string[]): void;
+declare function sort(sortBy: string | string[], sortAscending?: boolean): void;
 
 declare interface SortDefinition {
     [key: string]: ((item: ItemDataType, index?: number) => string | number) | ((elem: Element) => string | number) | string;
@@ -270,5 +264,11 @@ declare const VueIsotope: typeof _default & {
     install: Plugin_2;
 };
 export default VueIsotope;
+
+declare interface VueIsotopeOptions extends Omit<IsotopeOptions, 'getSortData'> {
+    getSortData?: SortDefinition | undefined;
+    getFilterData?: FilterDefinition | undefined;
+    isJQueryFiltering?: boolean | undefined;
+}
 
 export { }

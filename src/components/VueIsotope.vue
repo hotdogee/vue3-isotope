@@ -20,7 +20,7 @@ export interface FilterDefinition {
   [key: string]: (item: ItemDataType, index?: number) => boolean
 }
 
-export interface ExtendedIsotopeOptions extends Omit<IsotopeOptions, 'getSortData'> {
+export interface VueIsotopeOptions extends Omit<IsotopeOptions, 'getSortData'> {
   getSortData?: SortDefinition | undefined
   getFilterData?: FilterDefinition | undefined
   isJQueryFiltering?: boolean | undefined
@@ -28,7 +28,7 @@ export interface ExtendedIsotopeOptions extends Omit<IsotopeOptions, 'getSortDat
 
 // Create a separate interface that doesn't extend Isotope to avoid type conflicts
 export interface IsotopeInstance extends Omit<Isotope, 'updateSortData'> {
-  options?: ExtendedIsotopeOptions // from Outlayer options
+  options?: VueIsotopeOptions // from Outlayer options
   // https://github.com/metafizzy/outlayer/blob/fc751c12a0448c89a9da7caa88dd35de0a789f08/outlayer.js#L175
   items?: Array<{ element: Element }> // from Outlayer items
   updateSortData(elements?: Elements): void
@@ -87,7 +87,7 @@ function deepEqual(a: unknown, b: unknown): boolean {
 export interface Props {
   list: ItemDataType[]
   itemSelector: string
-  options: ExtendedIsotopeOptions
+  options: VueIsotopeOptions
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -141,8 +141,8 @@ function addDataIndexAttributes(element: HTMLElement | null) {
 }
 
 // Computed options processor
-const compiledOptions = computed<ExtendedIsotopeOptions>(() => {
-  const options: ExtendedIsotopeOptions = {
+const compiledOptions = computed<VueIsotopeOptions>(() => {
+  const options: VueIsotopeOptions = {
     ...props.options,
     // Ensure itemSelector starts with '.' if it's intended as a class selector
     itemSelector: props.itemSelector?.startsWith('.')
@@ -424,8 +424,8 @@ function layout(layoutMode: LayoutMode) {
   emit('layout', layoutMode)
 }
 
-function sort(sortBy: string | string[]) {
-  const options = { sortBy }
+function sort(sortBy: string | string[], sortAscending: boolean = true) {
+  const options = { sortBy, sortAscending }
   arrange(options)
   emit('sort', sortBy)
 }

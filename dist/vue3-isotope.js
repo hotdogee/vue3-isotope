@@ -179,8 +179,8 @@ const q = /* @__PURE__ */ O({
     function W(t) {
       y({ layoutMode: t }), c("layout", t);
     }
-    function $(t) {
-      y({ sortBy: t }), c("sort", t);
+    function $(t, e = !0) {
+      y({ sortBy: t, sortAscending: e }), c("sort", t);
     }
     function P(t) {
       return (e) => {
