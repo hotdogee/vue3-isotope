@@ -39,6 +39,8 @@
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
+    "docs:build": "vite build docs --outDir dist",
+    "docs:dev": "vite docs",
     "lint": "eslint . --fix",
     "format": "prettier --write src/"
   },

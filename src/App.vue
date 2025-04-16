@@ -1,3 +1,50 @@
+<template>
+  <div>
+    <h1>Isotope - filtering &amp; sorting (Vue 3)</h1>
+    <h2>Filter</h2>
+    <div class="button-group">
+      <button
+        v-for="btn in filterButtons"
+        :key="btn.value"
+        class="button"
+        :class="{ 'is-checked': filterValue === btn.value }"
+        @click="onFilterClick(btn.value)"
+      >
+        {{ btn.label }}
+      </button>
+    </div>
+    <h2>Sort</h2>
+    <div class="button-group">
+      <button
+        v-for="btn in sortButtons"
+        :key="btn.value"
+        class="button"
+        :class="{ 'is-checked': sortByValue === btn.value }"
+        @click="onSortClick(btn.value)"
+      >
+        {{ btn.label }}
+      </button>
+    </div>
+    <VueIsotope
+      ref="isotopeRef"
+      :list="elements"
+      itemSelector="element-item"
+      :options="isotopeOptions"
+      class="grid"
+      style="min-height: 300px"
+    >
+      <template v-for="el in elements" :key="el.symbol">
+        <div :class="el.classes.join(' ')" :data-category="el.category">
+          <h3 class="name">{{ el.name }}</h3>
+          <p class="symbol">{{ el.symbol }}</p>
+          <p class="number">{{ el.number }}</p>
+          <p class="weight">{{ el.weight }}</p>
+        </div>
+      </template>
+    </VueIsotope>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import VueIsotope from './components/VueIsotope.vue'
@@ -218,53 +265,6 @@ function onSortClick(val: string) {
   }
 }
 </script>
-
-<template>
-  <div>
-    <h1>Isotope - filtering &amp; sorting (Vue 3)</h1>
-    <h2>Filter</h2>
-    <div class="button-group">
-      <button
-        v-for="btn in filterButtons"
-        :key="btn.value"
-        class="button"
-        :class="{ 'is-checked': filterValue === btn.value }"
-        @click="onFilterClick(btn.value)"
-      >
-        {{ btn.label }}
-      </button>
-    </div>
-    <h2>Sort</h2>
-    <div class="button-group">
-      <button
-        v-for="btn in sortButtons"
-        :key="btn.value"
-        class="button"
-        :class="{ 'is-checked': sortByValue === btn.value }"
-        @click="onSortClick(btn.value)"
-      >
-        {{ btn.label }}
-      </button>
-    </div>
-    <VueIsotope
-      ref="isotopeRef"
-      :list="elements"
-      itemSelector="element-item"
-      :options="isotopeOptions"
-      class="grid"
-      style="min-height: 300px"
-    >
-      <template v-for="el in elements" :key="el.symbol">
-        <div :class="el.classes.join(' ')" :data-category="el.category">
-          <h3 class="name">{{ el.name }}</h3>
-          <p class="symbol">{{ el.symbol }}</p>
-          <p class="number">{{ el.number }}</p>
-          <p class="weight">{{ el.weight }}</p>
-        </div>
-      </template>
-    </VueIsotope>
-  </div>
-</template>
 
 <style>
 * {
