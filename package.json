@@ -44,9 +44,11 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@types/isotope-layout": "^3.0.15",
-    "isotope-layout": "^3.0.6",
+    "isotope-layout": "^3.0.6"
+  },
+  "peerDependencies": {
     "vue": "^3.5.0"
   },
   "devDependencies": {

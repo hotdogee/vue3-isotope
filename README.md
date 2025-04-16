@@ -28,11 +28,8 @@ A fully-featured Vue 3 component for [Isotope](https://isotope.metafizzy.co/), s
 ## Installation
 
 ```bash
-npm install vue3-isotope isotope-layout @types/isotope-layout
+npm install vue3-isotope
 ```
-
-**Peer Dependencies:**
-This library requires `vue >= 3.5.13` and `isotope-layout >= 3.0.6`. Make sure these are installed in your project. `@types/isotope-layout` is also highly recommended for TypeScript projects.
 
 ### Local Registration
 
