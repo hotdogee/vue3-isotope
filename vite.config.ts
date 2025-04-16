@@ -12,20 +12,20 @@ export default defineConfig({
     lib: {
       entry: resolve(import.meta.dirname, 'src/index.ts'),
       name: 'VueIsotope',
-      fileName: 'vue3-isotope',
+      fileName: 'vue3-isotope'
     },
     rollupOptions: {
       external: ['vue', 'isotope-layout', '@types/isotope-layout'],
       output: {
-        globals: { vue: 'Vue' },
-      },
+        globals: { vue: 'Vue', 'isotope-layout': 'Isotope' }
+      }
     },
     // Optional: Generate source maps for debugging
-    sourcemap: true,
+    sourcemap: true
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
 })

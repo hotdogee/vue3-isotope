@@ -244,7 +244,7 @@ declare interface IsotopeInstance extends Omit<default_2, 'updateSortData'> {
     arrange(options?: IsotopeOptions): void;
 }
 
-declare type ItemDataType = unknown;
+declare type ItemDataType = any;
 
 declare function layout(layoutMode: LayoutMode): void;
 

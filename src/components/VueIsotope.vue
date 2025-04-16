@@ -3,32 +3,31 @@ import type { IsotopeOptions } from 'isotope-layout'
 import Isotope from 'isotope-layout'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue'
 
-// Define more specific types instead of 'any'
-// type ItemDataType = Record<string, unknown>
-type ItemDataType = unknown
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ItemDataType = any
 // Match Isotope's own Elements type more closely
 type Elements = Element | Element[] | HTMLElement | HTMLElement[] | string | NodeList
 
-interface SortDefinition {
+export interface SortDefinition {
   [key: string]:
     | ((item: ItemDataType, index?: number) => string | number)
     | ((elem: Element) => string | number)
     | string
 }
 
-interface FilterDefinition {
+export interface FilterDefinition {
   // Ensure filter functions return boolean, as expected by Isotope when mapped from data
   [key: string]: (item: ItemDataType, index?: number) => boolean
 }
 
-interface ExtendedIsotopeOptions extends Omit<IsotopeOptions, 'getSortData'> {
+export interface ExtendedIsotopeOptions extends Omit<IsotopeOptions, 'getSortData'> {
   getSortData?: SortDefinition | undefined
   getFilterData?: FilterDefinition | undefined
   isJQueryFiltering?: boolean | undefined
 }
 
 // Create a separate interface that doesn't extend Isotope to avoid type conflicts
-interface IsotopeInstance extends Omit<Isotope, 'updateSortData'> {
+export interface IsotopeInstance extends Omit<Isotope, 'updateSortData'> {
   options?: ExtendedIsotopeOptions // from Outlayer options
   // https://github.com/metafizzy/outlayer/blob/fc751c12a0448c89a9da7caa88dd35de0a789f08/outlayer.js#L175
   items?: Array<{ element: Element }> // from Outlayer items
