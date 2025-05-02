@@ -1,7 +1,7 @@
 {
   "name": "vue3-isotope",
   "description": "Isotope filter & sort magical layouts for Vue 3",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "homepage": "https://vue3-isotope.hanl.in/",
   "repository": {
     "type": "git",

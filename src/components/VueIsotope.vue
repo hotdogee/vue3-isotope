@@ -297,7 +297,7 @@ function initializeIsotope() {
   ensureItemClasses(isotopeElement.value)
 
   const options = compiledOptions.value
-  console.log('Initializing Isotope with options:', options)
+  // console.log('Initializing Isotope with options:', options)
   // Use a more specific type assertion for Isotope constructor
   const instance = new Isotope(
     isotopeElement.value,
